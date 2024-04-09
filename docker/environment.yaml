@@ -1,9 +1,7 @@
 name: Hylight
 channels:
-  - https://mirrors.bfsu.edu.cn/anaconda/cloud/bioconda
-  - https://mirrors.bfsu.edu.cn/anaconda/cloud/conda-forge
-  - https://mirrors.bfsu.edu.cn/anaconda/cloud/bioconda/
-  - https://mirrors.bfsu.edu.cn/anaconda/cloud/conda-forge/
+  - bioconda
+  - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=conda_forge
@@ -49,4 +47,3 @@ dependencies:
   - wheel=0.37.1=pyhd8ed1ab_0
   - xz=5.2.6=h166bdaf_0
   - zlib=1.2.13=hd590300_5
-prefix: /home/wenhai/miniconda3/envs/Hylight
