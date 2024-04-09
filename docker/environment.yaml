@@ -1,0 +1,52 @@
+name: Hylight
+channels:
+  - https://mirrors.bfsu.edu.cn/anaconda/cloud/bioconda
+  - https://mirrors.bfsu.edu.cn/anaconda/cloud/conda-forge
+  - https://mirrors.bfsu.edu.cn/anaconda/cloud/bioconda/
+  - https://mirrors.bfsu.edu.cn/anaconda/cloud/conda-forge/
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=2_gnu
+  - bfc=r181=he4a0461_10
+  - ca-certificates=2024.2.2=hbcca054_0
+  - fmlrc2=0.1.7=hb7a5142_0
+  - gsl=2.7=he838d99_0
+  - k8=0.2.5=hdcf5f25_4
+  - ld_impl_linux-64=2.40=h41732ed_0
+  - libblas=3.9.0=20_linux64_openblas
+  - libcblas=3.9.0=20_linux64_openblas
+  - libffi=3.4.2=h7f98852_5
+  - libgcc-ng=13.2.0=h807b86a_5
+  - libgfortran-ng=13.2.0=h69a702a_5
+  - libgfortran5=13.2.0=ha4646dd_5
+  - libgomp=13.2.0=h807b86a_5
+  - liblapack=3.9.0=20_linux64_openblas
+  - libnsl=2.0.1=hd590300_0
+  - libopenblas=0.3.25=pthreads_h413a1c8_0
+  - libsqlite=3.45.2=h2797004_0
+  - libstdcxx-ng=13.2.0=h7e041cc_5
+  - libzlib=1.2.13=hd590300_5
+  - minimap2=2.28=he4a0461_0
+  - ncurses=6.4.20240210=h59595ed_0
+  - numpy=1.19.5=py36hfc0c790_2
+  - openssl=1.1.1w=hd590300_0
+  - pandas=1.1.5=py36h284efc9_0
+  - pip=21.3.1=pyhd8ed1ab_0
+  - python=3.6.15=hb7a2778_0_cpython
+  - python-dateutil=2.8.2=pyhd8ed1ab_0
+  - python_abi=3.6=2_cp36m
+  - pytz=2023.3.post1=pyhd8ed1ab_0
+  - racon=1.5.0=h21ec9f0_2
+  - readline=8.2=h8228510_1
+  - ropebwt2=r187=he4a0461_8
+  - scipy=1.5.3=py36h81d768a_1
+  - setuptools=58.0.4=py36h5fab9bb_2
+  - six=1.16.0=pyh6c4a22f_0
+  - sqlite=3.45.2=h2c6b66d_0
+  - starcode=1.4=h031d066_4
+  - tk=8.6.13=noxft_h4845f30_101
+  - wheel=0.37.1=pyhd8ed1ab_0
+  - xz=5.2.6=h166bdaf_0
+  - zlib=1.2.13=hd590300_5
+prefix: /home/wenhai/miniconda3/envs/Hylight
