@@ -14,7 +14,7 @@ COPY environment.yaml .
 RUN . /opt/conda/bin/activate && \
     conda env create -n hylight -f environment.yaml && \
     conda clean -ya
-RUN git clone https://github.com/kangxiongbin/HyLight.git && \
+RUN git clone https://github.com/LuoGroup2023/HyLight.git && \
     cd /tools/HyLight/tools/HaploConduct && \
     make clean && \
     make &&\
