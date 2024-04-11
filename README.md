@@ -27,7 +27,7 @@ conda install -c bioconda python=3.6 scipy pandas minimap2 bfc fmlrc2 ropebwt2 r
 ```
 Subsequently, pull down the code to the directory where you want to install, and compile the code:
 ```
-git clone https://github.com/kangxiongbin/HyLight.git
+git clone https://github.com/LuoGroup2023/HyLight.git
 cd HyLight
 sh install.sh
 ```
