@@ -10,7 +10,7 @@ The workflow of HyLight.Broadly speaking, there are three main steps. First, an 
 
 ## Installation and dependencies
 Please note that HyLight is built for linux-based systems and python3 only. HyLight relies on the following dependencies:
-HyLight relies on the following dependencies:
+
 - [bfc](https://github.com/lh3/bfc)
 - [racon](https://github.com/isovic/racon)
 - [fmlrc2](https://github.com/HudsonAlpha/fmlrc2)
@@ -27,17 +27,12 @@ conda install -c bioconda python=3.6 scipy pandas minimap2 bfc fmlrc2 ropebwt2 r
 ```
 Subsequently, pull down the code to the directory where you want to install, and compile the code:
 ```
-git clone https://github.com/LuoGroup2023/HyLight.git
+git clone https://github.com/kangxiongbin/HyLight.git
 cd HyLight
 sh install.sh
 ```
-## Examples
 
-Illumina miseq and ONT reads. The out_folder must give the full path.
-```
-python ../script/HyLight.py -l long_reads.fq -s short_reads.fq --nsplit 100 -t 30  -o out_folder
-
-```
+## Inputs
 The input file must be in interleaved FASTQ format. Since the final clustering step retrieves and groups reads based on their names, read names should not contain spaces. The read file should be formatted like this:
 ```
 @S0R0/1
@@ -50,8 +45,29 @@ TTGATTATCATGCCGGAAGTGCTGCTCTTGTTCTCTGAAAGAGAAT
 EEEGEHHHJHFJJJJBML2MMLNLLONNLNLOLJONOLNONNNMNF
 ```
 
+If the FASTQ files you have are separated into R1 and R2, we recommend using [fastp](https://github.com/OpenGene/fastp) to merge the two files into an interleaved FASTQ format.
 
-The output is long contigs (fasta format). Long_con_polished.fa is the assembly result of long reads. final_contigs.fa is the assembly result of both long reads and short reads. Sometimes, because the assembly result of long reads has already covered most of the genomic regions, there is no final_contigs.fa. The final assembly result is long_con_polished.fa.
+```
+fastp -i input_R1.fastq -I input_R2.fastq --stdout > sample_interleaved.fastq
+```
+## Running HyLight
+
+We have provided a simple test dataset of Illumina MiSeq and ONT reads in the example directory to check if the software has been installed and is running correctly. Please note that the out_folder must be specified with the full path.
+```
+python ../script/HyLight.py -l long_reads.fq -s short_reads.fq --nsplit 100 -t 30  -o <full path of the output folder>
+
+```
+
+## Outputs
+
+- `final_contigs.fa`: Final assembly result of both long and short reads. This file is generated only if further assembly beyond `long_con_polished.fa` is required.
+
+- `long_con_polished.fa`: Assembly result of long reads after polishing. 
+
+- `short_stageb.fa`: Assembled contigs from short reads extended using a global overlap graph.
+
+- `all_contigs.fa`: Contains all contigs from both short and long reads, used to construct a global overlap graph for further extension to generate final_contigs.fa.
+
 
 ## Docker
 
@@ -63,7 +79,55 @@ docker run -v $PWD:/$PWD -w $PWD hylight python /tools/HyLight/script/HyLight.py
 docker run -it --rm -v $PWD:/wd -w /wd -v /var/run/docker.sock:/var/run/docker.sock hylight /bin/bash
 conda activate hylight
 python /tools/HyLight/script/HyLight.py -l long_reads.fq -s short_reads.fq --nsplit 100 -t 30 -o /wd/out_folder
+
 ```
+
+### Parameters:
+
+- `-s`, `--short_reads`  
+  Input short reads in **interleaved FASTQ** format.
+
+- `-l`, `--long_reads`  
+  Input long reads in **FASTQ** format.
+
+- `-o`, `--outdir`  
+  Path to output directory for the result files. A full path is required, not just a filename.
+
+- `-t`, `--threads`  
+  The number of threads to use.  
+  **Default:** `20`
+
+- `--corrected`  
+  When specified, it indicates that both short reads and long reads have already been corrected, so no further correction is needed before proceeding with assembly.  
+  **Default:** `False`
+
+- `--nsplit`  
+  The number of split input FASTA/FASTQ files. If the size of the long reads data exceeds 5 GB or 10 GB, we recommend splitting the data into 1000 or more files to improve processing speed.  
+  **Default:** `60`
+
+- `--min_identity`  
+  The minimum identity for filtering overlaps. Higher values reduce error in the retained overlaps, but may also filter out useful overlaps.  
+  **Default:** `0.95`
+
+- `--min_ovlp_len`   
+  The minimum overlap length between long reads. Larger values indicate stricter filtering.  
+  **Default:** `3000`
+
+- `--size`   
+  The maximum size of the cluster for short reads. This is determined by your server's performance. Since we use an overlap graph, this process is computationally intensive. Assembling too many short reads at once may slow down performance.  
+  **Default:** `15000`
+
+- `--max_tip_len`  
+  The maximum length to be removed as tips.  
+  **Default:** `10000`
+
+- `--insert_size`  
+  The length of the insert size for short reads.  
+  **Default:** `450`
+
+- `--average_read_len`   
+  The average length of short reads.  
+  **Default:** `250`
 
 ## Possible issues during installation (optional)
 
