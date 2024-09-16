@@ -3,7 +3,7 @@ HyLight is a strain aware de novo assembly method based on the overlap-layout-co
 
 
 <p align="center">
-<img src="https://github.com/kangxiongbin/HyLight/assets/23208764/587682ca-722f-43e1-89c6-5582b8cd1f09" alt="HiStrain_workflow" width="500px"/>
+<img src="https://github.com/LuoGroup2023/HyLight/assets/23208764/587682ca-722f-43e1-89c6-5582b8cd1f09" alt="HiStrain_workflow" width="500px"/>
 </p>
 
 The workflow of HyLight.Broadly speaking, there are three main steps. First, an overlap graph is built using long reads, then the graph is optimized into a strain-aware graph. This graph is used to assemble long read contigs at strain-resolve. Next, short reads are aligned to the long read contigs and any short reads that align to assembled regions are removed. The remaining short reads undergo strain-aware assembly to produce short read contigs. Finally, the long read contigs and short read contigs are together used to construct a contig graph for further scaffolding and extension of the contigs into final master contigs.
@@ -27,7 +27,7 @@ conda install -c bioconda python=3.6 scipy pandas minimap2 bfc fmlrc2 ropebwt2 r
 ```
 Subsequently, pull down the code to the directory where you want to install, and compile the code:
 ```
-git clone https://github.com/kangxiongbin/HyLight.git
+git clone https://github.com/LuoGroup2023/HyLight.git
 cd HyLight
 sh install.sh
 ```
