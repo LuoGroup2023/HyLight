@@ -13,5 +13,5 @@ else
 	cd ${SRC_DIR}/HyLight/tools/HaploConduct
 	make clean
 	make CC="${CXX}" CPPFLAGS="-Wall -fopenmp -std=c++14 -g -O3 -L${PREFIX}/lib -I${PREFIX}/include" -j"${CPU_COUNT}"
-	cp -rf bin quick-cliques/bin $hylight_conda_dir/tools/HaploConduct -r
+	cp -rf bin quick-cliques/bin $hylight_conda_dir/tools/HaploConduct
 fi
